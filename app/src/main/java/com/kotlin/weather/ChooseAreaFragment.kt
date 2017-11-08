@@ -171,14 +171,12 @@ class ChooseAreaFragment: Fragment(){
                 } else if ("county" == type) {
                     result = Utility.handleCountyResponse(responseText, selectedCity!!.id)
                 }
-                Log.w("lavaTest","result " +result +"type " +type);
                 if (result) {
                     activity.runOnUiThread {
                         closeProgressDialog()
                         if ("province" == type) {
                             queryProvinces()
                         } else if ("city" == type) {
-                            Log.w("lavaTest","start 1 queryCities")
                            queryCities()
                         } else if ("county" == type) {
                             queryCounties()
@@ -198,7 +196,6 @@ class ChooseAreaFragment: Fragment(){
         back_button.visibility =View.VISIBLE
 
         cityList = DataSupport.where("provinceid = ?",java.lang.String.valueOf(selectedProvince!!.id)).find(City::class.java) as ArrayList<City>
-        Log.w("lavaTest","111 cityList  "+cityList.size);
         if (cityList.size > 0) {
             dataList.clear()
             for (city in cityList) {
